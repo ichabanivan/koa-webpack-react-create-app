@@ -8,10 +8,6 @@ import { setFilter } from '../../actions/filter';
 import './index.css';
 
 class Filters extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const {
       filter,

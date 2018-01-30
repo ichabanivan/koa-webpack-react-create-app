@@ -3,15 +3,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { updateTodo, newText, addNewTodo } from '../../actions/todo';
-import { pushTo } from '../../actions/push';
+import { push } from 'react-router-redux';
 
 import './index.css';
 
 class Input extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   state = {
     body: ''
   };
@@ -81,7 +77,7 @@ class Input extends Component {
     const {
       text,
       _id,
-      pushTo
+      push
     } = this.props;
 
     const {
@@ -99,7 +95,7 @@ class Input extends Component {
             value={ body }
             onChange={ this.changeInput }
           />
-          <span onClick={ () => pushTo('/') } title="Close editing"> X </span>
+          <span onClick={() => push('/') } title="Close editing"> X </span>
         </div>
       );
     } else {
@@ -125,4 +121,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-export default connect(mapStateToProps, { pushTo, updateTodo, newText, addNewTodo })(Input)
+export default connect(mapStateToProps, { push, updateTodo, newText, addNewTodo })(Input)

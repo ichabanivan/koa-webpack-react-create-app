@@ -12,7 +12,7 @@ export const updateTodo = (todo, _id) => {
     if (todo.body) {
       try {
         let response = await fetch('/updateTodo', {
-          method: 'POST',
+          method: 'PUT',
           body: JSON.stringify(todo)
         })
 
@@ -28,7 +28,7 @@ export const updateTodo = (todo, _id) => {
           dispatch(push(`/${_id}/error`));
         }
       } catch (error) {
-        console.error('Response was not received')
+        console.error('/updateTodo - error')
         dispatch(push(`/${_id}/error`));
       }
     } else {
@@ -64,7 +64,7 @@ export function addNewTodo(text) {
     if (isUnic) {
       try {
         let response = await fetch('/addTodo', {
-          method: 'PUT',
+          method: 'POST',
           body: JSON.stringify(todo)
         })
         let res = await response.json()
@@ -76,7 +76,7 @@ export function addNewTodo(text) {
           type: ACTIONS.RESET_TEXT
         })
       } catch (error) {
-        console.error('Response was not received')
+        console.error('/addTodo - error')
         dispatch(push(`/${id}/error`));
       }
     } else {
@@ -120,7 +120,7 @@ export function actionChangeStatus(_id, status) {
 
     try {
       let response = await fetch('/updateTodo', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(todo)
       })
 
@@ -161,7 +161,7 @@ export function initTodos() {
       }
       
     } catch (error) {
-      console.error('Response was not received')
+      console.error('/listTodos error')
       dispatch(push(`/${id}/error`));
     }
   }

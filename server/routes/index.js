@@ -6,8 +6,8 @@ function routes(app) {
     
   router
     .get('/listTodos', db.listTodos)
-    .put('/addTodo', db.addTodo)
-    .post('/updateTodo', db.updateTodo)
+    .post('/addTodo', db.addTodo)
+    .put('/updateTodo', db.updateTodo)
     .del('/:id', db.del)
 
     app.use(router.routes());

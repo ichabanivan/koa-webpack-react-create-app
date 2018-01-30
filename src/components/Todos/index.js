@@ -12,10 +12,6 @@ import ModalRemoveTodo from '../ModalRemoveTodo/';
 import ModalChangeStatus from '../ModalChangeStatus/';
 
 class Todos extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   state = {
     body: ''
   };

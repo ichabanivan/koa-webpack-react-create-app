@@ -2,23 +2,12 @@ const ObjectId = require('mongodb').ObjectID;
 
 let db = {};
 
-// db.default = async (ctx) => {
-//   try {
-//     ctx.set('Content-Type', 'text/html');
-//     ctx.body = fs.readFileSync(path.resolve(__dirname, '../dist/index.html'));
-//   } catch (e) {
-//     ctx.status = 404;
-//     ctx.message = e;
-//   }
-// }
-
 db.listTodos = async (ctx) => {
   try {
     ctx.body = await ctx.app.database.collection('todos').find().toArray()
     ctx.status = 200;
   } catch (e) {
     ctx.message = e;
-    ctx.status = 500;
   }
 }
 
@@ -27,14 +16,25 @@ db.addTodo = async (ctx) => {
     let date = new Date().toLocaleDateString();
 
     let todo = JSON.parse(ctx.request.body);
-    todo.created = date;
-    todo.modified = date;
+    let result;
 
-    let insertOne = await ctx.app.database.collection('todos').insertOne(todo)
-    ctx.body = insertOne.ops[0]
+    if (todo.body && todo.status) {
+      todo.created = date;
+      todo.modified = date;
+
+      let insertOne = await ctx.app.database.collection('todos').insertOne(todo)
+      result = insertOne.ops[0]
+    } else {
+      ctx.message = 'error';
+    }
+
+    if (result.body && result.status) {
+      ctx.body = result
+    } else {
+      ctx.message = 'error';
+    }
   } catch (e) {
     ctx.message = e;
-    ctx.status = 500;
   }
 }
 
@@ -56,7 +56,6 @@ db.updateTodo = async (ctx) => {
       })
   } catch (error) {
     ctx.message = e;
-    ctx.status = 500;
   }
 }
 
@@ -66,7 +65,6 @@ db.del = async (ctx) => {
     ctx.body = await ctx.app.database.collection('todos').deleteOne({ _id: id })
   } catch (error) {
     ctx.message = e;
-    ctx.status = 500;
   }
 };
 

@@ -7,10 +7,6 @@ import CONSTANTS from '../../constants/';
 import { hideModalAndRemoveTodo, hideModalRemoveTodo } from '../../actions/modal';
 
 class ModalRemoveTodo extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   stopPropagation = (e) => {
     e.stopPropagation();
   };

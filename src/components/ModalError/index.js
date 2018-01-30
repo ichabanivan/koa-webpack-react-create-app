@@ -6,10 +6,6 @@ import CONSTANTS from '../../constants/';
 import { hideModalError } from '../../actions/modal';
 
 class ModalError extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleHide = (e) => {
     e.preventDefault();
     this.props.hideModalError()

@@ -8,10 +8,6 @@ import TodoItem from '../TodoItem/';
 import './index.css';
 
 class TodoList extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const {
       todos,
@@ -43,6 +39,9 @@ const filterTodos = (todos, filter, text) => {
       return todos.filter((todo) => {
         return (todo.status === 'new' || todo.status === 'in progress') && todo.body.indexOf(text) !== -1;
       });
+    default: {
+      break;
+    }
   }
 };
 

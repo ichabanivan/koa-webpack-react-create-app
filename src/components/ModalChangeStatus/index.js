@@ -7,10 +7,6 @@ import CONSTANTS from '../../constants/';
 import { hideModalAndChangeStatus, hideModalChangeStatus } from '../../actions/modal';
 
 class ModalChangenewStatus extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     newStatus: 'new'
   };

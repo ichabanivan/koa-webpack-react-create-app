@@ -12,10 +12,6 @@ import 'normalize.css';
 import './index.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     this.props.initTodos()
   }
